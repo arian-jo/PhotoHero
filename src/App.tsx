@@ -17,31 +17,30 @@ const PhotoHoverEffect = () => {
   const combinedPhoto = 'https://imgur.com/emFdCuj.jpeg'; // Imagen combinada
   
   return (
-    <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
+    // Se utiliza "aspect-square" para garantizar un contenedor cuadrado y "w-full max-w-md mx-auto" para el tamaño
+    <div className="relative w-full max-w-md mx-auto aspect-square">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent to-purple-500/20 rounded-full blur-3xl"></div>
       
       {showCombined ? (
         <div 
-          className="relative rounded-2xl overflow-hidden transition-all duration-500 ease-in-out"
+          className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-500 ease-in-out"
           onMouseLeave={() => setShowCombined(false)}
         >
           <img 
             src={combinedPhoto} 
             alt="Combined AI-enhanced portrait" 
-            className="w-full h-auto object-cover transition-all duration-500 transform" 
+            className="w-full h-full object-cover transition-all duration-500 transform" 
           />
         </div>
       ) : (
         <div 
-          className="relative grid grid-cols-2 gap-2"
+          className="relative grid grid-cols-2 gap-2 w-full h-full"
           onMouseEnter={() => setShowCombined(true)}
         >
           {individualPhotos.map((photo, index) => (
             <div
               key={index}
-              className={`aspect-square rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300 ${
-                index % 2 === 0 ? 'translate-y-4' : ''
-              }`}
+              className="w-full h-full rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300"
             >
               <img
                 src={photo}
@@ -118,7 +117,7 @@ function App() {
             </div>
           </div>
           
-          {/* Here's where we're replacing the old image grid with the PhotoHoverEffect component */}
+          {/* Se reemplaza la cuadrícula antigua por el componente PhotoHoverEffect */}
           <PhotoHoverEffect />
         </div>
 
