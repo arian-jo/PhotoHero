@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Camera, ChevronRight, Star, Zap, Shield, Users } from 'lucide-react';
 
-// Photo Hover Effect Component
+// Componente con transición suave al hacer hover
 const PhotoHoverEffect = () => {
   const [showCombined, setShowCombined] = useState(false);
   
-  // Imagenes individuales (las que has compartido)
+  // Imágenes individuales
   const individualPhotos = [
     'https://imgur.com/utfCqTf.jpeg', // Arriba izquierda - Traje formal
     'https://imgur.com/FN0xA5I.jpeg', // Arriba derecha - Camisa azul
@@ -13,44 +13,37 @@ const PhotoHoverEffect = () => {
     'https://imgur.com/bqjcHR1.jpeg', // Abajo derecha - Selfie
   ];
   
-  // Imagen combinada (la primera que compartiste)
-  const combinedPhoto = 'https://imgur.com/emFdCuj.jpeg'; // Imagen combinada
-  
+  // Imagen combinada
+  const combinedPhoto = 'https://imgur.com/emFdCuj.jpeg';
+
   return (
-    // Se utiliza "aspect-square" para garantizar un contenedor cuadrado y "w-full max-w-md mx-auto" para el tamaño
-    <div className="relative w-full max-w-md mx-auto aspect-square">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-purple-500/20 rounded-full blur-3xl"></div>
-      
-      {showCombined ? (
-        <div 
-          className="relative w-full h-full rounded-2xl overflow-hidden transition-all duration-500 ease-in-out"
-          onMouseLeave={() => setShowCombined(false)}
-        >
-          <img 
-            src={combinedPhoto} 
-            alt="Combined AI-enhanced portrait" 
-            className="w-full h-full object-cover transition-all duration-500 transform" 
-          />
-        </div>
-      ) : (
-        <div 
-          className="relative grid grid-cols-2 gap-2 w-full h-full"
-          onMouseEnter={() => setShowCombined(true)}
-        >
-          {individualPhotos.map((photo, index) => (
-            <div
-              key={index}
-              className="w-full h-full rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300"
-            >
-              <img
-                src={photo}
-                alt={`Example ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-      )}
+    <div 
+      className="relative w-full max-w-md mx-auto aspect-square"
+      onMouseEnter={() => setShowCombined(true)}
+      onMouseLeave={() => setShowCombined(false)}
+    >
+      {/* Cuadrícula de miniaturas */}
+      <div className="grid grid-cols-2 gap-2 w-full h-full">
+        {individualPhotos.map((photo, index) => (
+          <div
+            key={index}
+            className="w-full h-full rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300"
+          >
+            <img
+              src={photo}
+              alt={`Example ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Imagen combinada superpuesta con transición de opacidad */}
+      <img 
+        src={combinedPhoto} 
+        alt="Combined AI-enhanced portrait" 
+        className={`absolute top-0 left-0 w-full h-full object-cover rounded-2xl transition-opacity duration-700 ease-in-out ${showCombined ? 'opacity-100' : 'opacity-0'}`} 
+      />
     </div>
   );
 };
@@ -117,7 +110,7 @@ function App() {
             </div>
           </div>
           
-          {/* Se reemplaza la cuadrícula antigua por el componente PhotoHoverEffect */}
+          {/* Se integra el componente PhotoHoverEffect */}
           <PhotoHoverEffect />
         </div>
 
