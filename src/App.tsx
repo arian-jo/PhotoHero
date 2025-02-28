@@ -10,11 +10,11 @@ const PhotoHoverEffect = () => {
     'https://imgur.com/utfCqTf', // Arriba izquierda - Traje formal
     'https://imgur.com/FN0xA5I', // Arriba derecha - Camisa azul
     'https://imgur.com/ybnqBOt', // Abajo izquierda - Con taza
-    'https://imgur.com/nS4YC42', // Abajo derecha - Selfie
+    'https://imgur.com/bqjcHR1', // Abajo derecha - Selfie
   ];
   
   // Imagen combinada (la primera que compartiste)
-  const combinedPhoto = 'https://imgur.com/undefined'; // Imagen combinada
+  const combinedPhoto = 'https://imgur.com/emFdCuj'; // Imagen combinada
   
   return (
     <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
