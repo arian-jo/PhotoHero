@@ -92,6 +92,7 @@ function App() {
                 View Gallery
               </button>
             </div>
+            <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <div className="text-yellow-400 text-sm">★★★★★</div>
                 <span className="text-gray-400 text-sm">20 creators trust PhotoHero</span>
