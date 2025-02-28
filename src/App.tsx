@@ -64,26 +64,14 @@ function App() {
           </div>
           <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-purple-500/20 rounded-full blur-3xl"></div>
-            <div className="relative grid grid-cols-2 gap-2">
-              {[
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d',
-                'https://images.unsplash.com/photo-1438761681033-6461ffad8d80',
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e',
-                'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
-              ].map((url, index) => (
-                <div
-                  key={index}
-                  className={`aspect-square rounded-lg overflow-hidden hover:opacity-90 transition cursor-pointer ${
-                    index % 2 === 0 ? 'translate-y-4' : ''
-                  }`}
-                >
-                  <img
-                    src={`${url}?auto=format&fit=crop&w=200&q=80`}
-                    alt={`Example ${index + 1}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ))}
+            <div className="relative">
+              <iframe 
+                style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} 
+                width="100%" 
+                height="450" 
+                src="https://embed.figma.com/proto/C4UXrXEamxC1Gp92EW1G8e/Untitled?node-id=2-6&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A6&embed-host=share" 
+                allowFullScreen
+              ></iframe>
             </div>
           </div>
         </div>
