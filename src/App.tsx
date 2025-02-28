@@ -56,7 +56,7 @@ function App() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:pl-4 lg:pl-12 xl:pl-20">
             <img
-              src="/logo.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
+              src="https://i.imgur.com/HXhNC1X.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
               alt="PhotoHero Logo"
               className="h-8"   // Ajusta la altura a tu gusto
             />
