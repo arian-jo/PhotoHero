@@ -60,7 +60,7 @@ function App() {
               alt="PhotoHero Logo"
               className="h-8"   // Ajusta la altura a tu gusto
             />
-            <span className="text-xl font-bold">PhotoHero</span>
+            <span className="text-xl font-bold"></span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#how-it-works" className="hover:text-purple-400 transition">How it Works</a>
