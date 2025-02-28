@@ -7,14 +7,14 @@ const PhotoHoverEffect = () => {
   
   // Imagenes individuales (las que has compartido)
   const individualPhotos = [
-    '/api/placeholder/400/320', // Arriba izquierda - Traje formal
-    '/api/placeholder/400/320', // Arriba derecha - Camisa azul
-    '/api/placeholder/400/320', // Abajo izquierda - Con taza
-    '/api/placeholder/400/320', // Abajo derecha - Selfie
+    'https://imgur.com/utfCqTf', // Arriba izquierda - Traje formal
+    'https://imgur.com/FN0xA5I', // Arriba derecha - Camisa azul
+    'https://imgur.com/ybnqBOt', // Abajo izquierda - Con taza
+    'https://imgur.com/nS4YC42', // Abajo derecha - Selfie
   ];
   
   // Imagen combinada (la primera que compartiste)
-  const combinedPhoto = '/api/placeholder/640/640'; // Imagen combinada
+  const combinedPhoto = 'https://imgur.com/undefined'; // Imagen combinada
   
   return (
     <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
