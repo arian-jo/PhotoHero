@@ -1,5 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Camera, ChevronRight, Star, Zap, Shield, Users } from 'lucide-react';
+
+// Photo Hover Effect Component
+const PhotoHoverEffect = () => {
+  const [showCombined, setShowCombined] = useState(false);
+  
+  // Imagenes individuales (las que has compartido)
+  const individualPhotos = [
+    '/api/placeholder/400/320', // Arriba izquierda - Traje formal
+    '/api/placeholder/400/320', // Arriba derecha - Camisa azul
+    '/api/placeholder/400/320', // Abajo izquierda - Con taza
+    '/api/placeholder/400/320', // Abajo derecha - Selfie
+  ];
+  
+  // Imagen combinada (la primera que compartiste)
+  const combinedPhoto = '/api/placeholder/640/640'; // Imagen combinada
+  
+  return (
+    <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-purple-500/20 rounded-full blur-3xl"></div>
+      
+      {showCombined ? (
+        <div 
+          className="relative rounded-2xl overflow-hidden transition-all duration-500 ease-in-out"
+          onMouseLeave={() => setShowCombined(false)}
+        >
+          <img 
+            src={combinedPhoto} 
+            alt="Combined AI-enhanced portrait" 
+            className="w-full h-auto object-cover transition-all duration-500 transform" 
+          />
+        </div>
+      ) : (
+        <div 
+          className="relative grid grid-cols-2 gap-2"
+          onMouseEnter={() => setShowCombined(true)}
+        >
+          {individualPhotos.map((photo, index) => (
+            <div
+              key={index}
+              className={`aspect-square rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300 ${
+                index % 2 === 0 ? 'translate-y-4' : ''
+              }`}
+            >
+              <img
+                src={photo}
+                alt={`Example ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 function App() {
   return (
@@ -62,18 +117,9 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="relative max-w-md mx-auto md:max-w-none md:ml-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-purple-500/20 rounded-full blur-3xl"></div>
-            <div className="relative">
-              <iframe 
-                style={{ border: "1px solid rgba(0, 0, 0, 0.1)" }} 
-                width="100%" 
-                height="450" 
-                src="https://embed.figma.com/proto/C4UXrXEamxC1Gp92EW1G8e/Untitled?node-id=2-6&p=f&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A6&embed-host=share" 
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
+          
+          {/* Here's where we're replacing the old image grid with the PhotoHoverEffect component */}
+          <PhotoHoverEffect />
         </div>
 
         {/* Features Section */}
