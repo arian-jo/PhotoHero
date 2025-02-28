@@ -58,7 +58,7 @@ function App() {
             <img
               src="https://i.imgur.com/HXhNC1X.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
               alt="PhotoHero Logo"
-              className="h-8"   // Ajusta la altura a tu gusto
+              className="h-12"   // Ajusta la altura a tu gusto
             />
             <span className="text-xl font-bold"></span>
           </div>
