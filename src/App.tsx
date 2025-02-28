@@ -55,8 +55,12 @@ function App() {
       <header className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:pl-4 lg:pl-12 xl:pl-20">
-            <Camera className="w-6 h-6 text-purple-500" />
-            <span className="text-xl font-bold">Reflectify</span>
+            <img
+              src="/logo.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
+              alt="PhotoHero Logo"
+              className="h-8"   // Ajusta la altura a tu gusto
+            />
+            <span className="text-xl font-bold">PhotoHero</span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#how-it-works" className="hover:text-purple-400 transition">How it Works</a>
