@@ -77,10 +77,6 @@ function App() {
         {/* Hero Section */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr] gap-4 items-center py-8">
           <div className="md:pl-4 lg:pl-12 xl:pl-20 max-w-xl">
-            <div className="inline-flex items-center gap-2 bg-gray-800/50 rounded-full px-3 py-1 mb-4 text-sm">
-              <span className="text-purple-400 font-semibold">Product of the day</span>
-              <span className="bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded-full text-xs">2nd</span>
-            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Your photos,
               <span className="block">reimagined with <span className="text-purple-500">AI</span></span>
@@ -96,20 +92,9 @@ function App() {
                 View Gallery
               </button>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="flex -space-x-3">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <img
-                    key={i}
-                    src={`https://images.unsplash.com/photo-${1507003211169 + i}-0a1dd7228f2d?w=40&h=40&auto=format&fit=crop`}
-                    alt={`User ${i}`}
-                    className="w-8 h-8 rounded-full border-2 border-gray-900"
-                  />
-                ))}
-              </div>
               <div className="flex items-center gap-2">
                 <div className="text-yellow-400 text-sm">★★★★★</div>
-                <span className="text-gray-400 text-sm">6,520 creators trust Reflectify</span>
+                <span className="text-gray-400 text-sm">20 creators trust PhotoHero</span>
               </div>
             </div>
           </div>
@@ -121,7 +106,7 @@ function App() {
         {/* Features Section */}
         <section className="py-16">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Reflectify?</h2>
+            <h2 className="text-3xl font-bold mb-4">Why Choose PhotoHero?</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Our AI-powered platform transforms your everyday photos into professional-grade portraits
             </p>
@@ -242,7 +227,7 @@ function App() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">What Our Users Say</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Join thousands of satisfied creators who trust Reflectify
+              Join thousands of satisfied creators who trust PhotoHero
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -258,7 +243,7 @@ function App() {
                   <div className="text-sm text-gray-400">Professional Photographer</div>
                 </div>
               </div>
-              <p className="text-gray-300">"Reflectify has revolutionized my workflow. The AI-enhanced photos are incredibly natural and save me hours of editing time."</p>
+              <p className="text-gray-300">"PhotoHero has revolutionized my workflow. The AI-enhanced photos are incredibly natural and save me hours of editing time."</p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="flex items-center gap-4 mb-4">
@@ -298,7 +283,7 @@ function App() {
               Ready to Transform Your Photos?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators who trust Reflectify to create stunning professional photos
+              Join thousands of creators who trust PhotoHero to create stunning professional photos
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full text-lg font-semibold transition">
@@ -318,7 +303,7 @@ function App() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Camera className="w-6 h-6 text-purple-500" />
-              <span className="text-xl font-bold">Reflectify</span>
+              <span className="text-xl font-bold">PhotoHero</span>
             </div>
             <p className="text-gray-400">
               Transform your photos with the power of AI
@@ -350,7 +335,7 @@ function App() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© 2025 Reflectify. All rights reserved.</p>
+          <p>© 2025 PhotoHero. All rights reserved.</p>
         </div>
       </footer>
     </div>
