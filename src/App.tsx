@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Camera, ChevronRight, ChevronLeft, Star, Zap, Shield, Users } from 'lucide-react';
+import { Camera, ChevronRight, ChevronLeft, Star, Zap, Shield, Users, Clock, DollarSign } from 'lucide-react';
 
 // Componente de carrusel de fotos
 const PhotoCarousel = () => {
@@ -171,14 +171,14 @@ function App() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 md:pl-4 lg:pl-12 xl:pl-20">
             <img
-              src="https://i.imgur.com/HXhNC1X.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
+              src="https://i.imgur.com/HXhNC1X.png"
               alt="PhotoHero Logo"
-              className="h-12"   // Ajusta la altura a tu gusto
+              className="h-12"
             />
             <span className="text-xl font-bold"></span>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#how-it-works" className="hover:text-purple-400 transition">How it Works</a>
+            <a href="#how-it-works" className="hover:text-purple-400 transition">How It Works</a>
             <a href="#pricing" className="hover:text-purple-400 transition">Pricing</a>
             <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-full text-sm transition">
               Get Started
@@ -193,19 +193,17 @@ function App() {
         <div className="grid grid-cols-1 md:grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr] gap-4 items-center py-8">
           <div className="md:pl-4 lg:pl-12 xl:pl-20 max-w-xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Your photos,
-              <span className="block">reimagined with <span className="text-purple-500">AI</span></span>
+              Your Own AI Model
+              <span className="block">for Just <span className="text-purple-500">$9</span></span>
             </h1>
             <p className="text-lg text-gray-300 mb-6">
-              Upload 10-15 photos and let our FLUX model create stunning professional shots. Fine-tuned to capture your unique essence.
+              Upload 10 to 15 photos, and we'll train your custom PhotoHero model in about 10 minutes. You own your model and only pay for the images you generate!
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <button className="bg-purple-600 hover:bg-purple-700 px-6 py-2.5 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition">
-                Try Now <ChevronRight className="w-4 h-4" />
+                Create My Model Now <ChevronRight className="w-4 h-4" />
               </button>
-              <button className="border border-purple-500 hover:bg-purple-950 px-6 py-2.5 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition">
-                View Gallery
-              </button>
+              <div className="text-sm text-gray-400 mt-2 sm:mt-0 sm:self-center">Just $9 for your personalized model.</div>
             </div>
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
@@ -215,39 +213,100 @@ function App() {
             </div>
           </div>
           
-          {/* Se integra el componente PhotoCarousel en lugar de PhotoHoverEffect */}
+          {/* Se integra el componente PhotoCarousel */}
           <PhotoCarousel />
         </div>
+
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Get started with your own AI model in just a few simple steps
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <Camera className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">1. Upload Your Photos</h3>
+              <p className="text-gray-400">Choose 10-15 photos of yourself, your product, or any subject you want.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">2. Train Your Model</h3>
+              <p className="text-gray-400">We'll handle the AI training for just $9. Your custom model is ready in about 10 minutes, and it's entirely yours.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <Star className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">3. Generate Unlimited Images</h3>
+              <p className="text-gray-400">Pay only for the images you create. Explore endless styles—portraits, artistic filters, or professional looks.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <ChevronRight className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">4. Download & Share</h3>
+              <p className="text-gray-400">Get high-resolution images you can use on social media, in portfolios, or anywhere else.</p>
+            </div>
+          </div>
+        </section>
 
         {/* Features Section */}
         <section className="py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Why Choose PhotoHero?</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Our AI-powered platform transforms your everyday photos into professional-grade portraits
+              Our AI-powered platform gives you complete control of your custom model
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-purple-400" />
+                <Users className="w-6 h-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Fast Processing</h3>
-              <p className="text-gray-400">Get your AI-enhanced photos in minutes, not hours</p>
+              <h3 className="text-xl font-semibold mb-2">Full Ownership of Your Model</h3>
+              <p className="text-gray-400">Once trained, it's all yours. No subscriptions, no hidden fees.</p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Shield className="w-6 h-6 text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Privacy First</h3>
-              <p className="text-gray-400">Your photos are encrypted and automatically deleted after processing</p>
+              <h3 className="text-xl font-semibold mb-2">Transparent Pricing</h3>
+              <p className="text-gray-400">Just $9 to train your model. Then, pay only for the images you generate.</p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
                 <Star className="w-6 h-6 text-purple-400" />
               </div>
               <h3 className="text-xl font-semibold mb-2">Professional Quality</h3>
-              <p className="text-gray-400">Studio-quality results from your personal photos</p>
+              <p className="text-gray-400">Our AI network delivers realistic, high-resolution images.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <Clock className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Fast & Simple</h3>
+              <p className="text-gray-400">In about 10 minutes, your model is trained and ready to generate images.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Expert Support</h3>
+              <p className="text-gray-400">Need help? Our team is here to guide you every step of the way.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                <DollarSign className="w-6 h-6 text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Pay As You Go</h3>
+              <p className="text-gray-400">No subscriptions required. Pay only for what you use.</p>
             </div>
           </div>
         </section>
@@ -257,53 +316,29 @@ function App() {
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Choose the plan that works best for you
+              No subscriptions. No hidden fees. Just pay for what you need.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <h3 className="text-xl font-semibold mb-2">Starter</h3>
-              <div className="text-3xl font-bold mb-4">$9<span className="text-lg text-gray-400">/month</span></div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500">
+              <h3 className="text-xl font-semibold mb-2">Model Training</h3>
+              <div className="text-3xl font-bold mb-4">$9<span className="text-lg text-gray-400"> one-time</span></div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>50 AI-enhanced photos</span>
+                  <span>Full ownership of your model</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Basic editing tools</span>
+                  <span>Trained with 10-15 photos</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Email support</span>
-                </li>
-              </ul>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition">
-                Get Started
-              </button>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500 relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-sm px-3 py-1 rounded-full">
-                Popular
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Pro</h3>
-              <div className="text-3xl font-bold mb-4">$29<span className="text-lg text-gray-400">/month</span></div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>200 AI-enhanced photos</span>
+                  <span>Model ready in about 10 minutes</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Advanced editing tools</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Priority support</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Custom presets</span>
+                  <span>Lifetime access to your model</span>
                 </li>
               </ul>
               <button className="w-full bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition">
@@ -311,28 +346,28 @@ function App() {
               </button>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
-              <div className="text-3xl font-bold mb-4">Custom</div>
+              <h3 className="text-xl font-semibold mb-2">Image Generation</h3>
+              <div className="text-3xl font-bold mb-4">$6<span className="text-lg text-gray-400"> per 100 images</span></div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Unlimited photos</span>
+                  <span>High-resolution output</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>Custom AI model training</span>
+                  <span>Use your model as many times as you want</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>24/7 dedicated support</span>
+                  <span>Perfect for social media, product shots, and more</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
-                  <span>API access</span>
+                  <span>Bulk discounts available for businesses</span>
                 </li>
               </ul>
               <button className="w-full border border-purple-500 hover:bg-purple-950 px-6 py-2 rounded-full transition">
-                Contact Sales
+                Learn More
               </button>
             </div>
           </div>
@@ -356,10 +391,10 @@ function App() {
                 />
                 <div>
                   <div className="font-semibold">Michael Chen</div>
-                  <div className="text-sm text-gray-400">Professional Photographer</div>
+                  <div className="text-sm text-gray-400">Content Creator</div>
                 </div>
               </div>
-              <p className="text-gray-300">"PhotoHero has revolutionized my workflow. The AI-enhanced photos are incredibly natural and save me hours of editing time."</p>
+              <p className="text-gray-300">"I trained my model in minutes and now create content for my social media without any subscription. The quality is amazing!"</p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="flex items-center gap-4 mb-4">
@@ -370,10 +405,10 @@ function App() {
                 />
                 <div>
                   <div className="font-semibold">Sarah Johnson</div>
-                  <div className="text-sm text-gray-400">Content Creator</div>
+                  <div className="text-sm text-gray-400">Entrepreneur</div>
                 </div>
               </div>
-              <p className="text-gray-300">"The quality of the AI-generated photos is amazing. It's like having a professional photographer on demand."</p>
+              <p className="text-gray-300">"Perfect for my e-commerce products. I trained a model once and generate unlimited photos. It saves me thousands in product photography."</p>
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl">
               <div className="flex items-center gap-4 mb-4">
@@ -384,10 +419,42 @@ function App() {
                 />
                 <div>
                   <div className="font-semibold">David Martinez</div>
-                  <div className="text-sm text-gray-400">Entrepreneur</div>
+                  <div className="text-sm text-gray-400">Photographer</div>
                 </div>
               </div>
-              <p className="text-gray-300">"The enterprise plan has been a game-changer for our business. The custom AI model delivers consistent, branded photos."</p>
+              <p className="text-gray-300">"The pay-as-you-go model is brilliant. I only pay for what I need and the $9 training fee is totally worth it for the quality I get."</p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto">
+              Get answers to the most common questions
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">What does owning my model mean?</h3>
+              <p className="text-gray-400">You control your custom-trained model entirely. No ongoing subscription or restrictions.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">How long does it take to train a model?</h3>
+              <p className="text-gray-400">Typically around 10 minutes, depending on server load.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">Can I train multiple models?</h3>
+              <p className="text-gray-400">Absolutely! Each model costs $9 to train, so you can have different models for different people or products.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">What if I need more images later?</h3>
+              <p className="text-gray-400">You can generate as many images as you want. You only pay for the additional images you create.</p>
+            </div>
+            <div className="bg-gray-800/50 p-6 rounded-xl">
+              <h3 className="text-xl font-semibold mb-2">Are my photos stored on your platform?</h3>
+              <p className="text-gray-400">We only use your photos to train the model. You can delete them afterward or keep them for future re-training.</p>
             </div>
           </div>
         </section>
@@ -396,14 +463,14 @@ function App() {
         <section className="py-16">
           <div className="bg-gradient-to-r from-purple-900/50 to-purple-600/50 rounded-2xl p-8 md:p-12 text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Photos?
+              Ready to train your own AI model for just $9?
             </h2>
             <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators who trust PhotoHero to create stunning professional photos
+              No subscription. No commitments. Pay only for what you use.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full text-lg font-semibold transition">
-                Get Started Now
+                Create My Model Now
               </button>
               <button className="border border-purple-500 hover:bg-purple-950 px-8 py-3 rounded-full text-lg font-semibold transition">
                 View Gallery
@@ -422,14 +489,14 @@ function App() {
               <span className="text-xl font-bold">PhotoHero</span>
             </div>
             <p className="text-gray-400">
-              Transform your photos with the power of AI
+              Your custom AI model, 100% yours, in just 10 minutes.
             </p>
           </div>
           <div>
             <h4 className="font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-purple-400 transition">Features</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Pricing</a></li>
+              <li><a href="#how-it-works" className="hover:text-purple-400 transition">How It Works</a></li>
+              <li><a href="#pricing" className="hover:text-purple-400 transition">Pricing</a></li>
               <li><a href="#" className="hover:text-purple-400 transition">Gallery</a></li>
             </ul>
           </div>
