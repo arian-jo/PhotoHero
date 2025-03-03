@@ -419,7 +419,7 @@ function App() {
             </div>
             <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
               <h3 className="text-xl font-semibold mb-2">Image Generation</h3>
-              <div className="text-3xl font-bold mb-4">$6<span className="text-lg text-gray-400"> per 100 images</span></div>
+              <div className="text-3xl font-bold mb-4">$0.07<span className="text-lg text-gray-400"> per image</span></div>
               <ul className="space-y-3 mb-6">
                 <li className="flex items-center gap-2">
                   <span className="text-purple-400">✓</span>
