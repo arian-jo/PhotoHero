@@ -25,7 +25,7 @@ const PhotoGrid = () => {
   return (
     <div className="relative w-full max-w-md mx-auto">
       {/* Etiqueta informativa */}
-      <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-lg text-sm">
+      <div className="absolute top-0 left-0 z-10 bg-purple-600 text-white px-3 py-1 rounded-lg text-sm">
         PhotoHero AI Model
       </div>
       
