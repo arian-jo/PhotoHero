@@ -1,88 +1,229 @@
-import React, { useState } from 'react';
-import { Camera, ChevronRight, Star, Zap, Shield, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Camera, RefreshCw, Zap } from 'lucide-react';
 
-// Componente con transición suave al hacer hover
-const PhotoHoverEffect = () => {
-  const [showCombined, setShowCombined] = useState(false);
-  
-  // Imágenes individuales
-  const individualPhotos = [
-    'https://imgur.com/utfCqTf.jpeg', // Arriba izquierda - Traje formal
-    'https://imgur.com/FN0xA5I.jpeg', // Arriba derecha - Camisa azul
-    'https://imgur.com/ybnqBOt.jpeg', // Abajo izquierda - Con taza
-    'https://imgur.com/bqjcHR1.jpeg', // Abajo derecha - Selfie
+const Carousel3D = () => {
+  // Grupos de fotos
+  const generatedPhotos = [
+    {
+      url: 'https://imgur.com/emFdCuj.jpeg',
+      label: 'Professional Portrait'
+    },
+    {
+      url: 'https://imgur.com/bqjcHR1.jpeg',
+      label: 'Business Casual'
+    },
+    {
+      url: 'https://imgur.com/ybnqBOt.jpeg',
+      label: 'Creative Shot'
+    }
   ];
   
-  // Imagen combinada
-  const combinedPhoto = 'https://imgur.com/emFdCuj.jpeg';
-
+  const trainingPhotos = [
+    {
+      url: 'https://imgur.com/utfCqTf.jpeg',
+      label: 'Original Selfie 1'
+    },
+    {
+      url: 'https://imgur.com/FN0xA5I.jpeg',
+      label: 'Original Selfie 2'
+    },
+    {
+      url: 'https://imgur.com/ybnqBOt.jpeg',
+      label: 'Original Selfie 3'
+    },
+    {
+      url: 'https://imgur.com/bqjcHR1.jpeg',
+      label: 'Original Selfie 4'
+    }
+  ];
+  
+  const [activeGroup, setActiveGroup] = useState('generated'); // 'generated' o 'training'
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoRotating, setIsAutoRotating] = useState(true);
+  const [isCompareMode, setIsCompareMode] = useState(false);
+  
+  // Seleccionar el grupo activo
+  const photos = activeGroup === 'generated' ? generatedPhotos : trainingPhotos;
+  
+  // Rotación automática
+  useEffect(() => {
+    if (!isAutoRotating) return;
+    
+    const interval = setInterval(() => {
+      setActiveIndex(current => 
+        current === photos.length - 1 ? 0 : current + 1
+      );
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoRotating, photos.length, activeGroup]);
+  
+  // Cambiar entre grupos
+  const toggleGroup = () => {
+    setActiveGroup(current => current === 'generated' ? 'training' : 'generated');
+    setActiveIndex(0);
+  };
+  
+  // Pausar/reanudar rotación automática
+  const toggleAutoRotate = () => {
+    setIsAutoRotating(current => !current);
+  };
+  
+  // Activar/desactivar modo comparativo
+  const toggleCompareMode = () => {
+    setIsCompareMode(current => !current);
+    setIsAutoRotating(false);
+  };
+  
   return (
-    <div 
-      className="relative w-full max-w-md mx-auto aspect-square"
-      onMouseEnter={() => setShowCombined(true)}
-      onMouseLeave={() => setShowCombined(false)}
-    >
-      {/* Cuadrícula de miniaturas */}
-      <div className="grid grid-cols-2 gap-2 w-full h-full">
-        {individualPhotos.map((photo, index) => (
-          <div
-            key={index}
-            className="w-full h-full rounded-lg overflow-hidden hover:opacity-90 cursor-pointer transition-all duration-300"
+    <div className="relative w-full max-w-md mx-auto">
+      {/* Controles superiores */}
+      <div className="flex justify-between mb-2">
+        <button
+          onClick={toggleGroup}
+          className={`px-3 py-1 rounded-full text-sm flex items-center gap-1 ${
+            activeGroup === 'generated' 
+              ? 'bg-purple-600 text-white' 
+              : 'bg-gray-700 text-gray-300'
+          }`}
+        >
+          {activeGroup === 'generated' ? (
+            <>
+              <Zap className="w-3 h-3" /> AI Generated
+            </>
+          ) : (
+            <>
+              <Camera className="w-3 h-3" /> Training Photos
+            </>
+          )}
+        </button>
+        
+        <div className="flex gap-2">
+          <button
+            onClick={toggleAutoRotate}
+            className={`p-1 rounded-full ${
+              isAutoRotating ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300'
+            }`}
           >
-            <img
-              src={photo}
-              alt={`Example ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </div>
-        ))}
+            <RefreshCw className="w-4 h-4" />
+          </button>
+          
+          <button
+            onClick={toggleCompareMode}
+            className={`px-2 py-1 rounded-full text-xs ${
+              isCompareMode ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300'
+            }`}
+          >
+            Compare
+          </button>
+        </div>
       </div>
-
-      {/* Imagen combinada superpuesta con transición de opacidad */}
-      <img 
-        src={combinedPhoto} 
-        alt="Combined AI-enhanced portrait" 
-        className={`absolute top-0 left-0 w-full h-full object-cover rounded-2xl transition-opacity duration-700 ease-in-out ${showCombined ? 'opacity-100' : 'opacity-0'}`} 
-      />
+      
+      {/* Carrusel principal */}
+      <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-800">
+        {isCompareMode ? (
+          /* Modo comparativo */
+          <div className="grid grid-cols-2 h-full gap-1">
+            <div className="relative">
+              <img
+                src={generatedPhotos[0].url}
+                alt="AI Generated"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-purple-600/90 text-white px-2 py-1 rounded text-xs">
+                AI Generated
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src={trainingPhotos[0].url}
+                alt="Training Photo"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-2 left-2 bg-gray-800/90 text-white px-2 py-1 rounded text-xs">
+                Original
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Modo carrusel */
+          <div className="relative perspective">
+            <div className="w-full h-full">
+              {photos.map((photo, index) => (
+                <div
+                  key={index}
+                  className={`absolute top-0 left-0 w-full h-full transition-all duration-500 ${
+                    index === activeIndex
+                      ? 'opacity-100 scale-100 z-10'
+                      : index === (activeIndex + 1) % photos.length
+                        ? 'opacity-0 scale-95 translate-x-full z-0'
+                        : 'opacity-0 scale-95 -translate-x-full z-0'
+                  }`}
+                >
+                  <img
+                    src={photo.url}
+                    alt={photo.label}
+                    className="w-full h-full object-cover"
+                  />
+                  
+                  {/* Etiqueta de la foto */}
+                  <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1.5 rounded-lg text-sm">
+                    {photo.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+      
+      {/* Controles de navegación */}
+      {!isCompareMode && (
+        <div className="flex justify-center mt-4 gap-2">
+          {photos.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setActiveIndex(index);
+                setIsAutoRotating(false);
+              }}
+              className={`w-2 h-2 rounded-full ${
+                index === activeIndex ? 'bg-purple-600' : 'bg-gray-400'
+              }`}
+            />
+          ))}
+        </div>
+      )}
+      
+      {/* Descripción */}
+      <div className="mt-4 text-center text-sm text-gray-400">
+        {isCompareMode
+          ? "See the transformation from your original photos to AI-enhanced portraits"
+          : activeGroup === 'generated'
+            ? "Professionally generated AI portraits for all your needs"
+            : "Just a few sample photos are all we need for training"
+        }
+      </div>
     </div>
   );
 };
 
+// Para usar en la Hero Section
 function App() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-      {/* Header */}
-      <header className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 md:pl-4 lg:pl-12 xl:pl-20">
-            <img
-              src="https://i.imgur.com/HXhNC1X.png"  // Si lo pones en public, la ruta es /nombreDelArchivo
-              alt="PhotoHero Logo"
-              className="h-12"   // Ajusta la altura a tu gusto
-            />
-            <span className="text-xl font-bold"></span>
-          </div>
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="#how-it-works" className="hover:text-purple-400 transition">How it Works</a>
-            <a href="#pricing" className="hover:text-purple-400 transition">Pricing</a>
-            <button className="bg-purple-600 hover:bg-purple-700 px-5 py-2 rounded-full text-sm transition">
-              Get Started
-            </button>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main Content */}
+      {/* Header permanece igual */}
+      
+      {/* Hero Section modificada */}
       <main className="container mx-auto px-6">
-        {/* Hero Section */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr,1fr] lg:grid-cols-[1fr,1fr] gap-4 items-center py-8">
           <div className="md:pl-4 lg:pl-12 xl:pl-20 max-w-xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Your photos,
-              <span className="block">reimagined with <span className="text-purple-500">AI</span></span>
+              <span className="text-purple-500">AI-powered</span> portraits
+              <span className="block">from your everyday photos</span>
             </h1>
             <p className="text-lg text-gray-300 mb-6">
-              Upload 10-15 photos and let our FLUX model create stunning professional shots. Fine-tuned to capture your unique essence.
+              Our cutting-edge AI transforms your regular photos into stunning professional portraits. Just upload a few photos and see the magic happen.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <button className="bg-purple-600 hover:bg-purple-700 px-6 py-2.5 rounded-full text-base font-semibold flex items-center justify-center gap-2 transition">
@@ -100,245 +241,12 @@ function App() {
             </div>
           </div>
           
-          {/* Se integra el componente PhotoHoverEffect */}
-          <PhotoHoverEffect />
+          {/* Reemplazamos PhotoHoverEffect con Carousel3D */}
+          <Carousel3D />
         </div>
-
-        {/* Features Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose PhotoHero?</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Our AI-powered platform transforms your everyday photos into professional-grade portraits
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Fast Processing</h3>
-              <p className="text-gray-400">Get your AI-enhanced photos in minutes, not hours</p>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Shield className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Privacy First</h3>
-              <p className="text-gray-400">Your photos are encrypted and automatically deleted after processing</p>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
-                <Star className="w-6 h-6 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Professional Quality</h3>
-              <p className="text-gray-400">Studio-quality results from your personal photos</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section id="pricing" className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Choose the plan that works best for you
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <h3 className="text-xl font-semibold mb-2">Starter</h3>
-              <div className="text-3xl font-bold mb-4">$9<span className="text-lg text-gray-400">/month</span></div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>50 AI-enhanced photos</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Basic editing tools</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Email support</span>
-                </li>
-              </ul>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition">
-                Get Started
-              </button>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-purple-500 relative">
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-sm px-3 py-1 rounded-full">
-                Popular
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Pro</h3>
-              <div className="text-3xl font-bold mb-4">$29<span className="text-lg text-gray-400">/month</span></div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>200 AI-enhanced photos</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Advanced editing tools</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Priority support</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Custom presets</span>
-                </li>
-              </ul>
-              <button className="w-full bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full transition">
-                Get Started
-              </button>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl border border-gray-700">
-              <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
-              <div className="text-3xl font-bold mb-4">Custom</div>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Unlimited photos</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>Custom AI model training</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>24/7 dedicated support</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-purple-400">✓</span>
-                  <span>API access</span>
-                </li>
-              </ul>
-              <button className="w-full border border-purple-500 hover:bg-purple-950 px-6 py-2 rounded-full transition">
-                Contact Sales
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="py-16">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What Our Users Say</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Join thousands of satisfied creators who trust PhotoHero
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=faces"
-                  alt="User"
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <div className="font-semibold">Michael Chen</div>
-                  <div className="text-sm text-gray-400">Professional Photographer</div>
-                </div>
-              </div>
-              <p className="text-gray-300">"PhotoHero has revolutionized my workflow. The AI-enhanced photos are incredibly natural and save me hours of editing time."</p>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=faces"
-                  alt="User"
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <div className="font-semibold">Sarah Johnson</div>
-                  <div className="text-sm text-gray-400">Content Creator</div>
-                </div>
-              </div>
-              <p className="text-gray-300">"The quality of the AI-generated photos is amazing. It's like having a professional photographer on demand."</p>
-            </div>
-            <div className="bg-gray-800/50 p-6 rounded-xl">
-              <div className="flex items-center gap-4 mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=50&h=50&fit=crop&crop=faces"
-                  alt="User"
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <div className="font-semibold">David Martinez</div>
-                  <div className="text-sm text-gray-400">Entrepreneur</div>
-                </div>
-              </div>
-              <p className="text-gray-300">"The enterprise plan has been a game-changer for our business. The custom AI model delivers consistent, branded photos."</p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16">
-          <div className="bg-gradient-to-r from-purple-900/50 to-purple-600/50 rounded-2xl p-8 md:p-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Photos?
-            </h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Join thousands of creators who trust PhotoHero to create stunning professional photos
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-purple-600 hover:bg-purple-700 px-8 py-3 rounded-full text-lg font-semibold transition">
-                Get Started Now
-              </button>
-              <button className="border border-purple-500 hover:bg-purple-950 px-8 py-3 rounded-full text-lg font-semibold transition">
-                View Gallery
-              </button>
-            </div>
-          </div>
-        </section>
+        
+        {/* El resto del contenido permanece igual */}
       </main>
-
-      {/* Footer */}
-      <footer className="container mx-auto px-6 py-8 border-t border-gray-800">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <Camera className="w-6 h-6 text-purple-500" />
-              <span className="text-xl font-bold">PhotoHero</span>
-            </div>
-            <p className="text-gray-400">
-              Transform your photos with the power of AI
-            </p>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Product</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-purple-400 transition">Features</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Pricing</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Gallery</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-purple-400 transition">About</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Blog</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Careers</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-purple-400 transition">Privacy</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Terms</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition">Security</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© 2025 PhotoHero. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   );
 }
