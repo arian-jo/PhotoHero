@@ -6,9 +6,9 @@ const PhotoGrid = () => {
   // Fotos generadas por el modelo AI (mostradas por defecto)
   const generatedPhotos = [
     'https://imgur.com/emFdCuj.jpeg', // Foto generada 1
-    'https://imgur.com/bqjcHR1.jpeg', // Foto generada 2
-    'https://imgur.com/ybnqBOt.jpeg', // Foto generada 3
-    'https://imgur.com/FN0xA5I.jpeg', // Foto generada 4
+    'https://imgur.com/WCK9kDd.jpeg', // Foto generada 2
+    'https://imgur.com/RZoz4wd.jpeg', // Foto generada 3
+    'https://imgur.com/LXrLXna.jpeg', // Foto generada 4
   ];
   
   // Fotos de entrenamiento originales (mostradas al hacer hover)
