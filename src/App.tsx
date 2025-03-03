@@ -1,7 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, ChevronRight, ChevronLeft, Star, Zap, Shield, Users, Clock, DollarSign } from 'lucide-react';
 
-// Componente de carrusel de fotos
+// Componente de cuadrícula de fotos con efecto hover
+const PhotoGrid = () => {
+  // Fotos generadas por el modelo AI (mostradas por defecto)
+  const generatedPhotos = [
+    'https://imgur.com/emFdCuj.jpeg', // Foto generada 1
+    'https://imgur.com/bqjcHR1.jpeg', // Foto generada 2
+    'https://imgur.com/ybnqBOt.jpeg', // Foto generada 3
+    'https://imgur.com/FN0xA5I.jpeg', // Foto generada 4
+  ];
+  
+  // Fotos de entrenamiento originales (mostradas al hacer hover)
+  const trainingPhotos = [
+    'https://imgur.com/utfCqTf.jpeg', // Foto de entrenamiento 1
+    'https://imgur.com/FN0xA5I.jpeg', // Foto de entrenamiento 2 
+    'https://imgur.com/ybnqBOt.jpeg', // Foto de entrenamiento 3
+    'https://imgur.com/bqjcHR1.jpeg', // Foto de entrenamiento 4
+  ];
+
+  // Estado para controlar qué celda tiene hover
+  const [hoverIndex, setHoverIndex] = useState(null);
+  
+  return (
+    <div className="relative w-full max-w-md mx-auto">
+      {/* Etiqueta informativa */}
+      <div className="absolute top-4 left-4 z-10 bg-purple-600 text-white px-3 py-1 rounded-lg text-sm">
+        PhotoHero AI Model
+      </div>
+      
+      {/* Cuadrícula de fotos */}
+      <div className="grid grid-cols-2 gap-3 w-full">
+        {generatedPhotos.map((photo, index) => (
+          <div
+            key={index}
+            className="relative aspect-square rounded-xl overflow-hidden"
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+          >
+            {/* Foto generada por AI (visible por defecto) */}
+            <img
+              src={generatedPhotos[index]}
+              alt={`AI Generated photo ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Foto de entrenamiento (visible al hacer hover) */}
+            <div
+              className={`absolute top-0 left-0 w-full h-full transition-opacity duration-300 ${
+                hoverIndex === index ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <img
+                src={trainingPhotos[index]}
+                alt={`Training photo ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Indicador de que esta es una foto de entrenamiento */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/70 text-white text-xs px-3 py-1 rounded-full">
+                Training Photo
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div className="text-center text-sm mt-4 text-purple-400">
+        <p>Hover over images to see original training photos</p>
+      </div>
+    </div>
+  );
+};
+
+// Mantengo los componentes originales por si quieres usarlos en el futuro
 const PhotoCarousel = () => {
   // Fotos generadas por el modelo AI
   const generatedPhotos = [
@@ -116,7 +188,6 @@ const PhotoCarousel = () => {
   );
 };
 
-// Mantengo el componente original por si se quiere usar en el futuro
 const PhotoHoverEffect = () => {
   const [showCombined, setShowCombined] = useState(false);
   
@@ -213,9 +284,10 @@ function App() {
             </div>
           </div>
           
-          {/* Se integra el componente PhotoCarousel */}
-          <PhotoCarousel />
+          {/* Usar el nuevo componente PhotoGrid en lugar de PhotoCarousel */}
+          <PhotoGrid />
         </div>
+
 
         {/* How It Works Section */}
         <section id="how-it-works" className="py-16">
