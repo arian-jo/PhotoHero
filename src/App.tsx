@@ -13,22 +13,22 @@ import { LoadingSpinner } from './components/LoadingSpinner';
 const PhotoGrid = () => {
   // Fotos generadas por el modelo AI (mostradas por defecto)
   const generatedPhotos = [
-    'https://imgur.com/emFdCuj.jpeg', // Foto generada 1
-    'https://imgur.com/WCK9kDd.jpeg', // Foto generada 2
-    'https://imgur.com/RZoz4wd.jpeg', // Foto generada 3
-    'https://imgur.com/LXrLXna.jpeg', // Foto generada 4
+    'https://i.ibb.co/Hn1J5x1/generated1.jpg', // Foto generada 1
+    'https://i.ibb.co/mGZ6RKm/generated2.jpg', // Foto generada 2
+    'https://i.ibb.co/VVPMx7Y/generated3.jpg', // Foto generada 3
+    'https://i.ibb.co/k4B0nZv/generated4.jpg', // Foto generada 4
   ];
   
   // Fotos de entrenamiento originales (mostradas al hacer hover)
   const trainingPhotos = [
-    'https://imgur.com/utfCqTf.jpeg', // Foto de entrenamiento 1
-    'https://imgur.com/FN0xA5I.jpeg', // Foto de entrenamiento 2 
-    'https://imgur.com/ybnqBOt.jpeg', // Foto de entrenamiento 3
-    'https://imgur.com/bqjcHR1.jpeg', // Foto de entrenamiento 4
+    'https://i.ibb.co/xF3vNPy/training1.jpg', // Foto de entrenamiento 1
+    'https://i.ibb.co/Lx6QQWL/training2.jpg', // Foto de entrenamiento 2 
+    'https://i.ibb.co/YX1Ld6k/training3.jpg', // Foto de entrenamiento 3
+    'https://i.ibb.co/VmBqxyz/training4.jpg', // Foto de entrenamiento 4
   ];
 
   // Estado para controlar qué celda tiene hover
-  const [hoverIndex, setHoverIndex] = useState(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   
   return (
     <div className="relative w-full max-w-md mx-auto">
@@ -85,17 +85,17 @@ const PhotoGrid = () => {
 const PhotoCarousel = () => {
   // Fotos generadas por el modelo AI
   const generatedPhotos = [
-    'https://imgur.com/emFdCuj.jpeg', // Foto principal generada 
-    'https://imgur.com/bqjcHR1.jpeg', // Otra foto generada
-    'https://imgur.com/ybnqBOt.jpeg', // Otra foto generada
+    'https://i.ibb.co/Hn1J5x1/generated1.jpg', // Foto principal generada 
+    'https://i.ibb.co/mGZ6RKm/generated2.jpg', // Otra foto generada
+    'https://i.ibb.co/VVPMx7Y/generated3.jpg', // Otra foto generada
   ];
   
   // Fotos de entrenamiento originales
   const trainingPhotos = [
-    'https://imgur.com/utfCqTf.jpeg', // Foto de entrenamiento 1
-    'https://imgur.com/FN0xA5I.jpeg', // Foto de entrenamiento 2 
-    'https://imgur.com/ybnqBOt.jpeg', // Foto de entrenamiento 3
-    'https://imgur.com/bqjcHR1.jpeg', // Foto de entrenamiento 4
+    'https://i.ibb.co/xF3vNPy/training1.jpg', // Foto de entrenamiento 1
+    'https://i.ibb.co/Lx6QQWL/training2.jpg', // Foto de entrenamiento 2 
+    'https://i.ibb.co/YX1Ld6k/training3.jpg', // Foto de entrenamiento 3
+    'https://i.ibb.co/VmBqxyz/training4.jpg', // Foto de entrenamiento 4
   ];
   
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -114,7 +114,7 @@ const PhotoCarousel = () => {
   }, []);
   
   // Cambiar slide manualmente
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
   
