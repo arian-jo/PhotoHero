@@ -258,14 +258,60 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 function App() {
+  const { user } = useAuth();
+
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
           <Route path="/" element={
-            <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white flex justify-center items-center">
-              <GoogleSignInButton />
-          </div>
+            <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
+              {/* Hero Section */}
+              <div className="container mx-auto px-4 py-12">
+                <div className="flex flex-col items-center gap-8">
+                  <h1 className="text-4xl md:text-6xl font-bold text-center">
+                    Transform Your Photos with AI
+                  </h1>
+                  <p className="text-xl text-gray-300 text-center max-w-2xl">
+                    Create stunning AI-enhanced portraits from your photos using our advanced machine learning technology.
+                  </p>
+                  
+                  {/* Photo Grid Component */}
+                  <div className="w-full max-w-4xl mx-auto mt-8">
+                    <PhotoGrid />
+                  </div>
+
+                  {/* Features Section */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 w-full max-w-4xl">
+                    <div className="flex flex-col items-center text-center p-6 bg-gray-800/50 rounded-xl">
+                      <Zap className="w-12 h-12 text-purple-500 mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Fast Processing</h3>
+                      <p className="text-gray-400">Get your enhanced photos in seconds</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-6 bg-gray-800/50 rounded-xl">
+                      <Star className="w-12 h-12 text-purple-500 mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">High Quality</h3>
+                      <p className="text-gray-400">Professional-grade results every time</p>
+                    </div>
+                    <div className="flex flex-col items-center text-center p-6 bg-gray-800/50 rounded-xl">
+                      <Shield className="w-12 h-12 text-purple-500 mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Secure</h3>
+                      <p className="text-gray-400">Your photos are safe with us</p>
+                    </div>
+                  </div>
+
+                  {/* CTA Section with Google Sign In */}
+                  <div className="mt-12 text-center">
+                    <h2 className="text-2xl md:text-4xl font-bold mb-6">
+                      Ready to Transform Your Photos?
+                    </h2>
+                    <div className="flex justify-center">
+                      <GoogleSignInButton />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           } />
           <Route 
             path="/payment" 
